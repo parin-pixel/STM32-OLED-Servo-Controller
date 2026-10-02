@@ -1,59 +1,33 @@
-# STM32 OLED & Servo Controller
+#STM32-OLED-Servo-Controller
 
-A STM32F446-based embedded project using STM32 HAL to control an SSD1306 128x64 OLED display over I2C and a servo motor using PWM.
+##Purpose- To build a weather monitoring station.
 
-## Features
+## COMPONENTS USED - 
+1.Water sensor
+2.Servo motor
+3.OLED display
+4.STM32-NULCEO-F446RE MCU
+5.LDR/Photoresistor
 
-- SSD1306 128x64 OLED control using I2C
-- Custom OLED driver written using STM32 HAL
-- 5x7 ASCII font rendering
-- 1024-byte OLED framebuffer
-- Page addressing mode
-- Servo control using PWM
-- 0–180° servo angle control
-- Modular driver structure using .c and .h files
+## Water sensor- 
+It detects rain . 
+There are conducting strips which are seperated. 
+When water comes in contact with it it completes the circuit acting as an electrolyte and a current flows. 
+This is detected by the MCU by reading the pin which outputs 1/0.
 
-## Hardware
+## Servo motor- 
+It acts as a roof controller. 
+Designed such that it moves when water comes in contact with sensor. 
+Could be used in rooftops of houses. 
+The source and header files for Servo motor was self written using the datasheet for sg90 servo motor by controlling PWM duty cycle.
 
-- STM32F446
-- SSD1306 128x64 OLED
-- Servo motor
+## LDR(photoresistor)-
+It is used to detect the sunlight levels.
+Each threshold is categorised into 'sunny', 'cloudy' or 'dark'.
 
-## OLED
+## OLED display-
+It is used to display the data.
+The source and header files for OLED were self written by looking into datasheet for the ssd1306 display.
+Communication with the oled occurs from I2C communictation.
 
-The OLED communicates with the STM32 using I2C.
 
-- Controller: SSD1306
-- Resolution: 128x64
-- I2C address: `0x3C`
-- Addressing mode: Page addressing
-- Framebuffer size: 1024 bytes
-
-The OLED driver handles:
-
-1. SSD1306 initialization
-2. Command transmission
-3. Framebuffer management
-4. Character rendering
-5. String rendering
-6. Display updates
-
-### OLED Data Flow
-
-  text
-Application
-     |
-     v
-oled_write_string()
-     |
-     v
-OLED Framebuffer
-     |
-     v
-oled_update()
-     |
-     v
-    I2C
-     |
-     v
-SSD1306 OLED
