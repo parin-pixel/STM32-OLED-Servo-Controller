@@ -20,10 +20,12 @@ It acts as a roof controller.
 Designed such that it moves when water comes in contact with sensor. 
 Could be used in rooftops of houses. 
 The source and header files for Servo motor was self written using the datasheet for sg90 servo motor by controlling PWM duty cycle.
+It is controlled by TIM3 CHANNEL 4 by generating PWM signals of duty cycle 5%,7.5% and 10% for angles 0,90 and 180 respectively.
 
 ## LDR(photoresistor)-
 It is used to detect the sunlight levels.
 Each threshold is categorised into 'sunny', 'cloudy' or 'dark'.
+It is read by using ADC to convert the analog voltage into binary.
 
 ## OLED display-
 It is used to display the data.
